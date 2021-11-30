@@ -1,0 +1,55 @@
+
+-----------------------------ASSIGNMENT-1--------------------------------
+(1)
+
+create table employee(empid number primary key,name varchar2(30), salary number,DOJ date);
+
+insert into employee values(401,'ram',40000,'19-may-2018');
+insert into employee values(402,'sagar',35000,'11-july-2017');
+insert into employee values(403,'vani',47000,'01-aug-2020');
+insert into employee values(404,'rani',61000,'13-sep-2021');
+insert into employee values(405,'saini',65000,'21-dec-2019');
+insert into employee values(406,'hindu',59000,'29-oct-2019');
+
+select * from employee;
+
+------------------------------------------------------------------
+(2)
+
+create table detailsemployee(empid number references employee,location varchar2(30), department varchar2(30));
+
+insert into detailsemployee values(401,'kerala','java201');
+insert into detailsemployee values(402,'goa','java201');
+insert into detailsemployee values(403,'kashmir','java201');
+insert into detailsemployee values(404,'mumbai','java202');
+insert into detailsemployee values(405,'tirupati','java202');
+insert into detailsemployee values(406,'hyderabad','java202');
+
+select * from detailsemployee;
+-----------------------------------------------------------------------
+(3)
+
+select a.empid,a.name,a.salary,a.DOJ,b.location,b.department from employee a, detailsemployee b where a.empid=b.empid;
+
+-----------------------------------------------------------------------
+(4)
+
+select count(empid), department from detailsemployee group by department;
+
+---------------------------------------------------------------------------
+
+(5)
+
+alter table employee add department varchar2(30);
+
+update employee set department='java201' where empid=401;
+update employee set department='java201' where empid=402;
+update employee set department='java201' where empid=403;
+update employee set department='java202' where empid=404;
+update employee set department='java202' where empid=405;
+update employee set department='java202' where empid=406;
+
+select * from detailsemployee;
+
+select max(salary), department from employee group by department;
+

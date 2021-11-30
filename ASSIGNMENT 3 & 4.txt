@@ -1,0 +1,200 @@
+---------------------------------ASSIGNMENT-3--------------------------
+
+package Dinesh;
+import java.util.*;
+public class ClassBank {
+	static Scanner s=new Scanner(System.in);
+	public static void main(String[] args) {
+		bankclass b1=new bankclass(1,"dinesh",9876543210L,35000.0f);
+		bankclass b2=new bankclass(2,"pranav",1234567890L,39000.0f);
+		bankclass b3=new bankclass(3,"thanish",6789012345L,61000.0f);
+		HashMap<Integer,bankclass> hm=new HashMap<Integer,bankclass>();
+				hm.put(1, b1);
+				hm.put(2, b2);
+				hm.put(3, b3);
+		System.out.println("Enter slno for search");
+		int a = s.nextInt();
+		Set set=hm.entrySet();
+		Iterator itr=set.iterator();
+	    while(itr.hasNext())
+	    {
+	    Map.Entry en=(Map.Entry)itr.next();
+	    if( (Integer)en.getKey() == a)
+        {
+            System.out.println(en.getValue());
+        }
+	}
+	}
+}
+-----------------
+package Dinesh;
+
+public class bankclass 
+{
+	int slno;
+	String name;
+	Long phoneno;
+	float balance;
+	public bankclass(int slno, String name, Long phoneno, float balance) {
+		this.slno = slno;
+		this.name = name;
+		this.phoneno = phoneno;
+		this.balance = balance;
+	}
+	@Override
+	public String toString() {
+		return "bankclass [slno=" + slno + ", name=" + name + ", phoneno=" + phoneno + ", balance=" + balance + "]";
+	}
+
+	}
+-------------------------ASSIGNMENT-4----------------------
+
+package Dinesh;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.Stack;
+
+public class cruise {
+	Scanner s = new Scanner(System.in);
+	int id;
+	String name;
+	int age;
+
+	char crew;
+	
+	public cruise(int id, String name, int age,  char crew) {
+		super();
+		
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	
+		this.crew = crew;
+	}
+	public void crewMember() {
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("Ticket free for Crew member");
+		System.out.println(" id / name / age of Crew member ");
+		System.out.println("Crew id -> "+ id);
+		System.out.println("Crew Name  -> "+ name);
+		System.out.println("Crew age  -> "+ age);
+		
+	}
+	public void children() {
+		int ticket =250;
+		System.out.println("----------------------------------------------------------------");
+		System.out.println("Children Ticket Details");
+		System.out.println("Children id -> "+ id);
+		System.out.println("Children Name  -> "+ name);
+		System.out.println("Children age  -> "+ age);
+		System.out.println("Children Ticket  -> Rs "+ ticket);
+		
+	}
+	public void Adult() {
+		int ticket =500;
+		System.out.println("Adult Ticket Details");
+		System.out.println("Adult id -> "+ id);
+		System.out.println("Adult Name  -> "+ name);
+		System.out.println("Adult age  -> "+ age);
+		System.out.println("Adult Ticket  -> Rs "+ ticket);
+		System.out.println("----------------------------------------------------------------");
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int id;
+		String name;
+		int age;
+		char crew;
+		
+		HashMap<Integer,Integer> m = new HashMap<Integer,Integer>(); 
+		HashMap<String,Integer> m1 = new HashMap<String,Integer>(); 
+		
+		while(true)
+		{
+			
+			System.out.println("Enter 1 for insert data");
+			System.out.println("Enter 2 for total no. ticket sold ");
+			System.out.println("Enter 3 for Name and Age Record ");
+			System.out.println("Enter 4 for exit ");
+			int z;
+			z = sc.nextInt();
+			switch(z) {
+			case 1:
+				System.out.println("----------------------------------------------------------------");
+				System.out.println("Enter id ");
+				id = sc.nextInt();
+				System.out.println("Enter name ");
+				name = sc.next();
+				System.out.println("Enter age");
+				age = sc.nextInt();
+				System.out.println("Enter crew member or not ->(y/n)");
+				crew =sc.next().charAt(0);
+				System.out.println("----------------------------------------------------------------");
+				System.out.println("----------------------------------------------------------------");
+				
+				cruise t = new cruise(id,name,age,crew);
+				
+				if(t.crew == 'y') {
+					t.crewMember();
+					m1.put(t.name, t.age);
+				}
+				else
+				{
+					if(t.crew == 'n')
+					{
+						if(t.age<=10)
+						{
+							t.children();
+							m.put(t.id, 250);
+							m1.put(t.name, t.age);
+						}
+						else
+						{
+							t.Adult();
+							m.put(t.id, 500);
+							m1.put(t.name, t.age);
+						}
+					}
+				}
+				break;
+			case 2:
+				int count=0;
+				int total =0;
+
+				Set set=m.entrySet();
+				java.util.Iterator itr=set.iterator();
+			    while(itr.hasNext())
+			    {
+			    Map.Entry en=(Map.Entry)itr.next();
+			    count++;
+			    total = total +(Integer)en.getValue();
+			   
+				
+				}
+			  System.out.println("----------------------------------------------------------------");
+			    
+				System.out.println("Total ticket sold --> "+count);
+				System.out.println("Total income ---> "+total);
+				System.out.println("----------------------------------------------------------------");
+			    break;
+				case 3:
+					Set set1=m1.entrySet();
+					java.util.Iterator itr1=set1.iterator();
+				    while(itr1.hasNext())
+				    {
+				    Map.Entry en=(Map.Entry)itr1.next();
+				    System.out.println("Name -> "+en.getKey()+ ", "+ "Age -> "+en.getValue());
+					
+					}
+					break;
+				case 4:
+				System.exit(z);
+				break;
+		}   
+	}	
+	}
+}

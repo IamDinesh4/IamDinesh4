@@ -1,0 +1,50 @@
+package Dinesh;
+public class Empy {
+	int empno,salary;
+	String name,deg;
+	public Empy(int empno, String name, String deg,int salary) {
+		this.empno = empno;
+		this.name = name;
+		this.deg = deg;
+		this.salary = salary;
+	}
+	@Override
+	public String toString() {
+		return "Empolyee deetails [empno=" + empno + ", name=" + name + ", degistration=" + deg + " ,salary" + salary+  "]";
+
+}
+}
+-------------------------
+package Dinesh;
+import java.util.*;
+public class ArrayExpl {
+
+	public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter details");
+        int empno,salary;
+        String name,deg;
+        System.out.println("enter empno");
+        empno=sc.nextInt();
+        System.out.println("enter name");
+        name=sc.next();
+       System.out.println("enter degisnation");
+         deg=sc.next();
+         System.out.println("enter slarly");
+         salary=sc.nextInt();
+         
+         Empy obj1=new  Empy(empno,name,deg,salary);
+
+		ArrayList al=new ArrayList();
+		al.add(obj1);
+		
+		Iterator it=al.iterator();
+		while(it.hasNext())
+		{
+		System.out.println("the details are-->"+it.next());
+	
+
+	}
+
+}}
+------------------------------------
